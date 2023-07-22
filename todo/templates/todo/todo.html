@@ -4,4 +4,17 @@
 {% endblock %}
 {% block content%}
 <h1>Todo</h1>
+{% if todos%}
+{% for todo in todos%}
+<ul>
+    <li>{{todo.id}}</li>
+    <li>{{todo.title}}</li>
+    <li>{{todo.text}}</li>
+    <li>{{todo.created}}</li>
+    <li>{{todo.important}}</li>
+</ul>
+{% endfor %}
+{% else%}
+目前無代辦事項
+{% endif %}
 {% endblock%}
