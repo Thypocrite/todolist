@@ -1,20 +1,52 @@
 {% extends 'base.html' %}
-{% block title%}
+{% block title %}
 代辦事項頁面
 {% endblock %}
-{% block content%}
-<h1>Todo</h1>
-{% if todos%}
-{% for todo in todos%}
+{% block css %}
+<style>
+    li {
+        list-style-type: none;
+        height: 50px;
+    }
+
+    ul {
+        border-radius: 12px;
+        width: 400px;
+        background-color: aquamarine;
+        padding: 24px;
+    }
+
+    .title {
+        color: blueviolet;
+        background-color: white;
+        width: 300px;
+        font-size: 36px;
+        font-weight: 900;
+    }
+
+    a {
+        color: black;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<h1>TodoList</h1>
+{% if todos %}
+{% for todo in todos %}
 <ul>
-    <li>{{todo.id}}</li>
-    <li>{{todo.title}}</li>
-    <li>{{todo.text}}</li>
-    <li>{{todo.created}}</li>
-    <li>{{todo.important}}</li>
+    <li><small>{{todo.created}}</small></li>
+    <li class="title">
+        <a href="{% url 'view' todo.id %}"> {{todo.title}}</a>
+
+    </li>
+    <li>
+        {% if todo.important %}
+        <span style="color:red">重要</span>
+        {% endif %}
+    </li>
 </ul>
 {% endfor %}
-{% else%}
+{% else %}
 目前無代辦事項
 {% endif %}
-{% endblock%}
+{% endblock %}

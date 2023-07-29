@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+單一事項頁面
+{% endblock %}
+{% block css %}
+<style>
+    .title {
+        color: blueviolet;
+        background-color: white;
+        width: 300px;
+        font-size: 36px;
+        font-weight: 900;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<h1>ViewTodo</h1>
+{% if todo %}
+<li style="list-style-type: none"><small>{{todo.created}}</small></li>
+<li style="list-style-type: none" class="title">
+    {{todo.title}}</li>
+{% if todo.important %}
+<li>
+    重要
+</li>
+{% endif %}
+<li>{{todo.text}}</li>
+<li>
+    {% if not todo.date_completed %}
+    未完成
+    {% else %}
+    完成時間:
+    {{ todo.date_completed}}
+    {% endif %}
+</li>
+{% endif %}
+{% endblock %}
