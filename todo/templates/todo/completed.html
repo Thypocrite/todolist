@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-代辦事項頁面
+已完成事項頁面
 {% endblock %}
 {% block css %}
 <style>
@@ -34,13 +34,13 @@
 </style>
 {% endblock %}
 {% block content %}
-<h1>TodoList</h1>
+<h1>Completed Todo</h1>
 {% if todos %}
 {% for todo in todos %}
 <ul>
     <li><small>{{todo.created}}</small></li>
     <li class="title">
-        <a href="{% url 'view' todo.id %}">{{todo.title|safe|truncatechars:10}}</a>
+        <a href="{% url 'view' todo.id %}"> {{todo.title|safe|truncatechars:10}}</a>
 
     </li>
     <li>
@@ -51,6 +51,6 @@
 </ul>
 {% endfor %}
 {% else %}
-目前無代辦事項
+目前無已完成事項
 {% endif %}
 {% endblock %}

@@ -11,20 +11,26 @@
         font-size: 36px;
         font-weight: 900;
     }
+
+    .important {
+        color: red;
+    }
 </style>
 {% endblock %}
 {% block content %}
 <h1>ViewTodo</h1>
 {% if todo %}
-<li style="list-style-type: none"><small>{{todo.created}}</small></li>
+<li style="list-style-type: none"><small>{{todo.created}}
+        {% if todo.important %} 重要{% endif %}
+    </small>
+</li>
 <li style="list-style-type: none" class="title">
     {{todo.title}}</li>
-{% if todo.important %}
-<li>
-    重要
-</li>
+{% if todo.text %}
+{{todo.text|linebreaks}}
+{% else %}
+無內容
 {% endif %}
-<li>{{todo.text}}</li>
 <li>
     {% if not todo.date_completed %}
     未完成
@@ -33,5 +39,13 @@
     {{ todo.date_completed}}
     {% endif %}
 </li>
+<hr>
+<h2>修改事項</h2>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" name="update" value="修改"></input>
+    <input type="submit" name="delete" value="刪除"></input>
+</form>
 {% endif %}
 {% endblock %}
